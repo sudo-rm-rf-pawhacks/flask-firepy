@@ -14,19 +14,20 @@ X = df[['maxtempF', 'mintempF', 'avgtempF', 'totalSnow_cm', 'humid', 'wind', 'pr
 y = df['had_wildfire']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+print("past train test split")
 scaler = StandardScaler()
 #i know that these values are unused - the scaler method calls are necessary for the rest of the code to happen. the returned values are useful for testing. which i'm not doing currently, but i have done it in the past and may do it in the future, so for now these vars stay as they are.
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
+print("past x test")
 
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
-
+print("past fit")
 importances = model.feature_importances_
 feature_names = X.columns
 importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances}).sort_values(by='Importance', ascending=False)
-
+print('past importance df')
 def predict_wildfire(data):
     user_data = np.array([[data["max_temp"], data["min_temp"], data["avg_temp"], 0, data["humidity"], data["wind_speed"], data["precipitation"], data["sun_hours"], data["lat"], data["long"]]])
     

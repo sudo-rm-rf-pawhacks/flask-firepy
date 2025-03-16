@@ -2,13 +2,12 @@ from flask import Flask
 import requests
 import datetime
 import pandas as pd
-from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 print("reading csv")
-df = pd.read_csv("weather_data_3.csv")  # Replace with actual file path
+df = pd.read_parquet("C:\\Users\\craze\\OneDrive\\Attachments\\Documents\\Fireguard\\flask-firepy\\api\\export_1742147442033.parquet")  # Replace with actual file path
 print("read csv")
 X = df[['maxtempF', 'mintempF', 'avgtempF', 'totalSnow_cm', 'humid', 'wind', 'precip', 'sunHour', 'lat', 'long']]  # Adjust based on your dataset
 y = df['had_wildfire']

@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-df = pd.read_csv("C:\\Users\\craze\\OneDrive\\Attachments\\Documents\\weather_data_3.csv")  # Replace with actual file path
+df = pd.read_csv("weather_data_3.csv")  # Replace with actual file path
 
 X = df[['maxtempF', 'mintempF', 'avgtempF', 'totalSnow_cm', 'humid', 'wind', 'precip', 'sunHour', 'lat', 'long']]  # Adjust based on your dataset
 y = df['had_wildfire']
@@ -26,10 +26,8 @@ model.fit(X_train, y_train)
 importances = model.feature_importances_
 feature_names = X.columns
 importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances}).sort_values(by='Importance', ascending=False)
-print(importance_df)
 
 def predict_wildfire(data):
-    print("Enter weather data:")
     user_data = np.array([[data["max_temp"], data["min_temp"], data["avg_temp"], 0, data["humidity"], data["wind_speed"], data["precipitation"], data["sun_hours"], data["lat"], data["long"]]])
     
     user_data = scaler.transform(user_data)
@@ -93,7 +91,6 @@ def get_weather_data(latitude, longitude):
     probabilities = []
     for day in days:
         probabilities.append(predict_wildfire(day))
-    print(probabilities)
     return probabilities
 
 if __name__ == '__main__': 

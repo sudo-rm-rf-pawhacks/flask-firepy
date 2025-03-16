@@ -47,7 +47,7 @@ app = Flask(__name__)
 #geo-locator = Nominatim(user_agent = "fireguard")
 key = "yU9qHcarLte1Fu65nMmrjwOp5BK38tS9"
 
-@app.route("/test", methods = ['GET', 'POST'])
+@app.route("/test", methods = ['GET'])
 def homepage():
     print('agsdfsdf')
     return("<p>smoke/p>")

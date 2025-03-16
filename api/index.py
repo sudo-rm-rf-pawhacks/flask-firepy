@@ -6,8 +6,10 @@ from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import os.path
 print("reading csv")
-df = pd.read_parquet("\\export_1742147442033.parquet")  # Replace with actual file path
+
+df = pd.read_parquet(os.path.join(dirname, "data\\export_1742147442033.parquet"))
 print("read csv")
 X = df[['maxtempF', 'mintempF', 'avgtempF', 'totalSnow_cm', 'humid', 'wind', 'precip', 'sunHour', 'lat', 'long']]  # Adjust based on your dataset
 y = df['had_wildfire']
